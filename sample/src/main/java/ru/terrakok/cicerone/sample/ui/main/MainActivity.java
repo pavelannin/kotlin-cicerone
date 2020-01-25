@@ -1,22 +1,24 @@
 package ru.terrakok.cicerone.sample.ui.main;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
 import java.util.List;
+
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Replace;
 import ru.terrakok.cicerone.sample.R;
@@ -36,14 +38,13 @@ public class MainActivity extends MvpAppCompatActivity implements ChainHolder {
     @Inject
     NavigatorHolder navigatorHolder;
 
-    private Navigator navigator = new AppNavigator(this, R.id.main_container) {
+    private Navigator navigator = new MainNavigator(this, R.id.main_container, new Function0<Unit>() {
         @Override
-        public void applyCommands(Command[] commands) {
-            super.applyCommands(commands);
-            getSupportFragmentManager().executePendingTransactions();
+        public Unit invoke() {
             printScreensScheme();
+            return Unit.INSTANCE;
         }
-    };
+    });
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

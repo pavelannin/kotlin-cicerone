@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
 
 /**
  * Created by terrakok 24.11.16
@@ -14,7 +14,7 @@ import ru.terrakok.cicerone.Router;
 
 @Module
 public class NavigationModule {
-    private Cicerone<Router> cicerone;
+    private Cicerone<AppRouter> cicerone;
 
     public NavigationModule() {
         cicerone = Cicerone.create();
@@ -22,7 +22,7 @@ public class NavigationModule {
 
     @Provides
     @Singleton
-    Router provideRouter() {
+    AppRouter provideRouter() {
         return cicerone.getRouter();
     }
 

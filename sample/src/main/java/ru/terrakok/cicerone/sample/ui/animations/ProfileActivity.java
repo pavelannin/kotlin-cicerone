@@ -1,5 +1,6 @@
 package ru.terrakok.cicerone.sample.ui.animations;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.transition.ChangeBounds;
 import android.view.View;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.AppNavigator;
+import ru.terrakok.cicerone.android.AppNavigatorImpl;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
@@ -41,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_container);
 
         if (savedInstanceState == null) {
-            navigator.applyCommands(new Command[]{new Replace(new Screens.ProfileInfoScreen())});
+            navigator.applyCommands(new Command[]{new Replace(Screens.ProfileInfoScreen.INSTANCE)});
         }
     }
 
@@ -57,9 +60,17 @@ public class ProfileActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private Navigator navigator = new AppNavigator(this, R.id.container) {
+    private final AppNavigatorImpl.Middleware navigatorMiddleware = new AppNavigatorImpl.Middleware() {
+
+        @Nullable
         @Override
-        protected void setupFragmentTransaction(Command command, Fragment currentFragment, Fragment nextFragment, FragmentTransaction fragmentTransaction) {
+        public Bundle createActivityOptions(@NotNull Command command, @NotNull Intent activityIntent) {
+            return null;
+        }
+
+        @NotNull
+        @Override
+        public FragmentTransaction setupFragmentTransaction(@NotNull Command command, @Nullable Fragment currentFragment, @NotNull Fragment nextFragment, @NotNull FragmentTransaction fragmentTransaction) {
             if (command instanceof Forward
                     && currentFragment instanceof ProfileFragment
                     && nextFragment instanceof SelectPhotoFragment) {
@@ -69,8 +80,11 @@ public class ProfileActivity extends AppCompatActivity {
                         fragmentTransaction
                 );
             }
+            return fragmentTransaction;
         }
     };
+
+    private Navigator navigator = new AppNavigatorImpl(this, getSupportFragmentManager(), R.id.container, navigatorMiddleware);
 
     private void setupSharedElementForProfileToSelectPhoto(ProfileFragment profileFragment,
                                                            SelectPhotoFragment selectPhotoFragment,

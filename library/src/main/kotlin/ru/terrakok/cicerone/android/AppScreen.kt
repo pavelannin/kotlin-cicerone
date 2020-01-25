@@ -13,12 +13,15 @@ import ru.terrakok.cicerone.Screen
  * Support @JvmName on interface.
  * https://youtrack.jetbrains.com/issue/KT-31420
  */
-@Suppress(names =["INAPPLICABLE_JVM_NAME"])
+@Suppress(names = ["INAPPLICABLE_JVM_NAME"])
 interface AppScreen : Screen {
 
-    @JvmName(name = "getActivityIntent")
-    fun activityIntent(context: Context): Intent?
+    @get:JvmName(name = "getCreatorType") val creatorType: CreatorType
 
-    @JvmName(name = "getFragment")
-    fun fragment(): Fragment?
+    interface CreatorType
+
+    sealed class BaseCreatorType : CreatorType {
+        data class ActivityCreator(val creator: (Context) -> Intent) : BaseCreatorType()
+        data class FragmentCreator(val creator: () -> Fragment) : BaseCreatorType()
+    }
 }

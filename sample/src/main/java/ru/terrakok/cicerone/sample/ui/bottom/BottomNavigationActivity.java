@@ -15,7 +15,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.android.AppScreen;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.Screens;
@@ -32,7 +33,7 @@ public class BottomNavigationActivity extends MvpAppCompatActivity
     private BottomNavigationBar bottomNavigationBar;
 
     @Inject
-    Router router;
+    AppRouter router;
 
     @InjectPresenter
     BottomNavigationPresenter presenter;
@@ -111,7 +112,9 @@ public class BottomNavigationActivity extends MvpAppCompatActivity
 
         FragmentTransaction transaction = fm.beginTransaction();
         if (newFragment == null) {
-            transaction.add(R.id.ab_container, new Screens.TabScreen(tab).getFragment(), tab);
+            final AppScreen.BaseCreatorType creatorType = (AppScreen.BaseCreatorType) new Screens.TabScreen(tab).getCreatorType();
+            final Fragment fragment = ((AppScreen.BaseCreatorType.FragmentCreator) creatorType).getCreator().invoke();
+            transaction.add(R.id.ab_container, fragment, tab);
         }
 
         if (currentFragment != null) {
@@ -147,7 +150,7 @@ public class BottomNavigationActivity extends MvpAppCompatActivity
     }
 
     @Override
-    public Router getRouter() {
+    public AppRouter getRouter() {
         return router;
     }
 }

@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
+import ru.terrakok.cicerone.AppRouter;
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.Navigator;
-import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.android.AppNavigator;
+import ru.terrakok.cicerone.android.AppNavigatorImpl;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.Screens;
@@ -51,7 +51,7 @@ public class TabContainerFragment extends Fragment implements RouterProvider, Ba
         super.onCreate(savedInstanceState);
     }
 
-    private Cicerone<Router> getCicerone() {
+    private Cicerone<AppRouter> getCicerone() {
         return ciceroneHolder.getCicerone(getContainerName());
     }
 
@@ -84,13 +84,13 @@ public class TabContainerFragment extends Fragment implements RouterProvider, Ba
 
     private Navigator getNavigator() {
         if (navigator == null) {
-            navigator = new AppNavigator(getActivity(), getChildFragmentManager(), R.id.ftc_container);
+            navigator = new AppNavigatorImpl(getActivity(), getChildFragmentManager(), R.id.ftc_container);
         }
         return navigator;
     }
 
     @Override
-    public Router getRouter() {
+    public AppRouter getRouter() {
         return getCicerone().getRouter();
     }
 

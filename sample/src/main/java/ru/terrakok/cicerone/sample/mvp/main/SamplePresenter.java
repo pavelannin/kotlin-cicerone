@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
 import ru.terrakok.cicerone.sample.Screens;
 
 /**
@@ -21,12 +21,12 @@ import ru.terrakok.cicerone.sample.Screens;
 
 @InjectViewState
 public class SamplePresenter extends MvpPresenter<SampleView> {
-    private Router router;
+    private AppRouter router;
     private int screenNumber;
     private ScheduledExecutorService executorService;
     private ScheduledFuture<?> future;
 
-    public SamplePresenter(Router router, int screenNumber) {
+    public SamplePresenter(AppRouter router, int screenNumber) {
         this.router = router;
         this.screenNumber = screenNumber;
         executorService = Executors.newSingleThreadScheduledExecutor();

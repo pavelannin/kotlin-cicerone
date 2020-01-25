@@ -2,29 +2,29 @@ package ru.terrakok.cicerone.sample.mvp.start;
 
 import com.arellomobile.mvp.MvpPresenter;
 
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
 import ru.terrakok.cicerone.sample.Screens;
 
 /**
  * Created by terrakok 21.11.16
  */
 public class StartActivityPresenter extends MvpPresenter<StartActivityView> {
-    private Router router;
+    private AppRouter router;
 
-    public StartActivityPresenter(Router router) {
+    public StartActivityPresenter(AppRouter router) {
         this.router = router;
     }
 
     public void onOrdinaryPressed() {
-        router.navigateTo(new Screens.MainScreen());
+        router.navigateTo(Screens.MainScreen.INSTANCE);
     }
 
     public void onMultiPressed() {
-        router.navigateTo(new Screens.BottomNavigationScreen());
+        router.navigateTo(Screens.BottomNavigationScreen.INSTANCE);
     }
 
     public void onResultWithAnimationPressed() {
-        router.navigateTo(new Screens.ProfileScreen());
+        router.navigateTo(Screens.ProfileScreen.INSTANCE);
     }
 
     public void onBackPressed() {

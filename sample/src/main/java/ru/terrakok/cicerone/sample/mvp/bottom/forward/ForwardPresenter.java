@@ -3,7 +3,7 @@ package ru.terrakok.cicerone.sample.mvp.bottom.forward;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
 import ru.terrakok.cicerone.sample.Screens;
 
 /**
@@ -13,10 +13,10 @@ import ru.terrakok.cicerone.sample.Screens;
 @InjectViewState
 public class ForwardPresenter extends MvpPresenter<ForwardView> {
     private String container;
-    private Router router;
+    private AppRouter router;
     private int number;
 
-    public ForwardPresenter(String container, Router router, int number) {
+    public ForwardPresenter(String container, AppRouter router, int number) {
         this.container = container;
         this.router = router;
         this.number = number;

@@ -3,16 +3,16 @@ package ru.terrakok.cicerone.sample.mvp.bottom;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.AppRouter;
 
 /**
  * Created by terrakok 25.11.16
  */
 @InjectViewState
 public class BottomNavigationPresenter extends MvpPresenter<BottomNavigationView> {
-    private Router router;
+    private AppRouter router;
 
-    public BottomNavigationPresenter(Router router) {
+    public BottomNavigationPresenter(AppRouter router) {
         this.router = router;
     }
 
