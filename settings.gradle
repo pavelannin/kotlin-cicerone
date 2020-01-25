@@ -1,2 +1,4 @@
+rootProject.name = 'Cicerone'
+
 include ':library', ':sample', ':stub-android'
 project(':stub-android').projectDir = new File('library/stub-android')

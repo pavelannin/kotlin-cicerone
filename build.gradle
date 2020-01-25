@@ -1,26 +1,26 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    repositories {
-        jcenter()
-        google()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-alpha01'
 
-        // For the library uploading to the Bintray
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    ext.kotlin_version = '1.3.61'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: 'com.android.tools.build', name: 'gradle', version: '3.5.3'
+        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlin_version
+        classpath group: 'com.jfrog.bintray.gradle', name: 'gradle-bintray-plugin', version: '1.8.0'
+        classpath group: 'com.github.dcendents', name: 'android-maven-gradle-plugin', version: '2.1'
     }
 }
 
 allprojects {
-    repositories {
-        jcenter()
-        google()
-    }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
 }
