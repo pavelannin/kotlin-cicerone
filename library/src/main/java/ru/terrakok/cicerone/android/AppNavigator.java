@@ -106,9 +106,9 @@ public class AppNavigator implements Navigator {
 
         fragmentTransaction
                 .replace(containerId, fragment)
-                .addToBackStack(screen.getScreenKey())
+                .addToBackStack(screen.getKey())
                 .commit();
-        localStackCopy.add(screen.getScreenKey());
+        localStackCopy.add(screen.getKey());
     }
 
     protected void fragmentBack() {
@@ -157,9 +157,9 @@ public class AppNavigator implements Navigator {
 
             fragmentTransaction
                     .replace(containerId, fragment)
-                    .addToBackStack(screen.getScreenKey())
+                    .addToBackStack(screen.getKey())
                     .commit();
-            localStackCopy.add(screen.getScreenKey());
+            localStackCopy.add(screen.getKey());
 
         } else {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -184,7 +184,7 @@ public class AppNavigator implements Navigator {
         if (command.getScreen() == null) {
             backToRoot();
         } else {
-            String key = command.getScreen().getScreenKey();
+            String key = command.getScreen().getKey();
             int index = localStackCopy.indexOf(key);
             int size = localStackCopy.size();
 
@@ -276,6 +276,6 @@ public class AppNavigator implements Navigator {
     }
 
     protected void errorWhileCreatingScreen(AppScreen screen) {
-        throw new RuntimeException("Can't create a screen: " + screen.getScreenKey());
+        throw new RuntimeException("Can't create a screen: " + screen.getKey());
     }
 }
