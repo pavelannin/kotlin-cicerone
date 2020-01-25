@@ -1,4 +1,4 @@
-package ru.terrakok.cicerone.android.support;
+package ru.terrakok.cicerone.android;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import ru.terrakok.cicerone.Screen;
  * NOTE: If you have described the creation of Intent then Activity will be started.<br>
  * Recommendation: Use Intents for launch external application.
  */
-public abstract class SupportAppScreen extends Screen {
+public abstract class AppScreen extends Screen {
 
     public Fragment getFragment() {
         return null;

@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Replace;
 import ru.terrakok.cicerone.sample.R;
@@ -36,7 +36,7 @@ public class MainActivity extends MvpAppCompatActivity implements ChainHolder {
     @Inject
     NavigatorHolder navigatorHolder;
 
-    private Navigator navigator = new SupportAppNavigator(this, R.id.main_container) {
+    private Navigator navigator = new AppNavigator(this, R.id.main_container) {
         @Override
         public void applyCommands(Command[] commands) {
             super.applyCommands(commands);

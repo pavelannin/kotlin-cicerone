@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private Navigator navigator = new SupportAppNavigator(this, R.id.container) {
+    private Navigator navigator = new AppNavigator(this, R.id.container) {
         @Override
         protected void setupFragmentTransaction(Command command, Fragment currentFragment, Fragment nextFragment, FragmentTransaction fragmentTransaction) {
             if (command instanceof Forward

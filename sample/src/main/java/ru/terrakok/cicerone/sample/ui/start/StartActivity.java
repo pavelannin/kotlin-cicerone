@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.mvp.start.StartActivityPresenter;
@@ -31,7 +31,7 @@ public class StartActivity extends MvpAppCompatActivity implements StartActivity
     @InjectPresenter
     StartActivityPresenter presenter;
 
-    private Navigator navigator = new SupportAppNavigator(this, -1);
+    private Navigator navigator = new AppNavigator(this, -1);
 
     @ProvidePresenter
     public StartActivityPresenter createStartActivityPresenter() {

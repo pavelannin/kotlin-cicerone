@@ -1,11 +1,12 @@
-package ru.terrakok.cicerone.android.pure;
+package ru.terrakok.cicerone.android;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.LinkedList;
 
@@ -28,11 +29,11 @@ public class AppNavigator implements Navigator {
     protected final int containerId;
     protected LinkedList<String> localStackCopy;
 
-    public AppNavigator(Activity activity, int containerId) {
-        this(activity, activity.getFragmentManager(), containerId);
+    public AppNavigator(FragmentActivity activity, int containerId) {
+        this(activity, activity.getSupportFragmentManager(), containerId);
     }
 
-    public AppNavigator(Activity activity, FragmentManager fragmentManager, int containerId) {
+    public AppNavigator(FragmentActivity activity, FragmentManager fragmentManager, int containerId) {
         this.activity = activity;
         this.fragmentManager = fragmentManager;
         this.containerId = containerId;

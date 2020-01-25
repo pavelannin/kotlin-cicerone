@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.Screens;
@@ -84,7 +84,7 @@ public class TabContainerFragment extends Fragment implements RouterProvider, Ba
 
     private Navigator getNavigator() {
         if (navigator == null) {
-            navigator = new SupportAppNavigator(getActivity(), getChildFragmentManager(), R.id.ftc_container);
+            navigator = new AppNavigator(getActivity(), getChildFragmentManager(), R.id.ftc_container);
         }
         return navigator;
     }
