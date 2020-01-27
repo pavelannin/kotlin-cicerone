@@ -13,7 +13,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import javax.inject.Inject;
 
-import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.DefaultRouter;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.mvp.animation.PhotoSelection;
@@ -30,7 +30,7 @@ public class ProfileFragment extends MvpAppCompatFragment implements ProfileView
     private ImageView avatar;
 
     @Inject
-    AppRouter router;
+    DefaultRouter router;
 
     @InjectPresenter
     ProfilePresenter presenter;

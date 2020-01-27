@@ -3,7 +3,7 @@ package ru.terrakok.cicerone.sample.mvp.animation.profile;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.DefaultRouter;
 import ru.terrakok.cicerone.sample.Screens;
 import ru.terrakok.cicerone.sample.mvp.animation.PhotoSelection;
 
@@ -14,10 +14,10 @@ import ru.terrakok.cicerone.sample.mvp.animation.PhotoSelection;
 @InjectViewState
 public class ProfilePresenter extends MvpPresenter<ProfileView> {
 
-    private AppRouter router;
+    private DefaultRouter router;
     private PhotoSelection photoSelection;
 
-    public ProfilePresenter(PhotoSelection photoSelection, AppRouter router) {
+    public ProfilePresenter(PhotoSelection photoSelection, DefaultRouter router) {
         this.photoSelection = photoSelection;
         this.router = router;
 

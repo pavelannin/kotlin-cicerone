@@ -13,7 +13,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import javax.inject.Inject;
 
-import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.DefaultRouter;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.mvp.animation.PhotoSelection;
@@ -36,7 +36,7 @@ public class SelectPhotoFragment extends MvpAppCompatFragment
     private ImageView photo4;
 
     @Inject
-    AppRouter router;
+    DefaultRouter router;
 
     @Inject
     PhotoSelection photoSelection;

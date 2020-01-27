@@ -15,8 +15,8 @@ class Cicerone<R : Router>(val router: R, val navigatorHolder: NavigatorHolder) 
         }
 
         @JvmStatic
-        fun create(): Cicerone<AppRouter> {
-            return create { AppRouter(executor = it) }
+        fun create(): Cicerone<DefaultRouter> {
+            return create { DefaultRouter(executor = it) }
         }
     }
 }

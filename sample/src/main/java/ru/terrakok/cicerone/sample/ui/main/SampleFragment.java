@@ -11,7 +11,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import javax.inject.Inject;
 
-import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.DefaultRouter;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.mvp.main.SamplePresenter;
@@ -38,7 +38,7 @@ public class SampleFragment extends BaseFragment implements SampleView, BackButt
     private View finishChainCommandBt;
 
     @Inject
-    AppRouter router;
+    DefaultRouter router;
 
     @InjectPresenter
     SamplePresenter presenter;

@@ -3,21 +3,19 @@ package ru.terrakok.cicerone.sample.subnavigation;
 import java.util.HashMap;
 
 import ru.terrakok.cicerone.Cicerone;
-import ru.terrakok.cicerone.AppRouter;
-import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.DefaultRouter;
 
 /**
  * Created by terrakok 27.11.16
  */
 public class LocalCiceroneHolder {
-    private HashMap<String, Cicerone<AppRouter>> containers;
+    private HashMap<String, Cicerone<DefaultRouter>> containers;
 
     public LocalCiceroneHolder() {
         containers = new HashMap<>();
     }
 
-    public Cicerone<AppRouter> getCicerone(String containerTag) {
+    public Cicerone<DefaultRouter> getCicerone(String containerTag) {
         if (!containers.containsKey(containerTag)) {
             containers.put(containerTag, Cicerone.create());
         }

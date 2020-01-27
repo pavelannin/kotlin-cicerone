@@ -15,7 +15,7 @@ import ru.terrakok.cicerone.commands.Replace
  * This implementation covers almost all cases needed for the average app.
  * Extend it if you need some tricky navigation.
  */
-class AppRouter(private val executor: CommandExecutable) : Router {
+class DefaultRouter(private val executor: CommandExecutable) : Router {
 
     /**
      * Open new screen and add it to the screens chain.

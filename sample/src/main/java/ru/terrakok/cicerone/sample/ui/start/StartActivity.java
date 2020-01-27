@@ -9,10 +9,10 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import javax.inject.Inject;
 
-import ru.terrakok.cicerone.AppRouter;
+import ru.terrakok.cicerone.DefaultRouter;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.AppNavigatorImpl;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.mvp.start.StartActivityPresenter;
@@ -23,7 +23,7 @@ import ru.terrakok.cicerone.sample.mvp.start.StartActivityView;
  */
 public class StartActivity extends MvpAppCompatActivity implements StartActivityView {
     @Inject
-    AppRouter router;
+    DefaultRouter router;
 
     @Inject
     NavigatorHolder navigatorHolder;
@@ -31,7 +31,7 @@ public class StartActivity extends MvpAppCompatActivity implements StartActivity
     @InjectPresenter
     StartActivityPresenter presenter;
 
-    private Navigator navigator = new AppNavigatorImpl(this, getSupportFragmentManager(), -1);
+    private Navigator navigator = new AppNavigator(this, getSupportFragmentManager(), -1);
 
     @ProvidePresenter
     public StartActivityPresenter createStartActivityPresenter() {

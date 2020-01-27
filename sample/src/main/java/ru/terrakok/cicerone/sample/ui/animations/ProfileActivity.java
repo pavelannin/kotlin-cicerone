@@ -1,29 +1,20 @@
 package ru.terrakok.cicerone.sample.ui.animations;
 
-import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import android.transition.ChangeBounds;
-import android.view.View;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.AppNavigatorImpl;
+import ru.terrakok.cicerone.android.AppNavigator;
 import ru.terrakok.cicerone.commands.Command;
-import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
 import ru.terrakok.cicerone.sample.R;
 import ru.terrakok.cicerone.sample.SampleApplication;
 import ru.terrakok.cicerone.sample.Screens;
-import ru.terrakok.cicerone.sample.ui.animations.photos.SelectPhotoFragment;
-import ru.terrakok.cicerone.sample.ui.animations.profile.ProfileFragment;
 import ru.terrakok.cicerone.sample.ui.common.BackButtonListener;
 
 /**
@@ -60,45 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private final AppNavigatorImpl.Middleware navigatorMiddleware = new AppNavigatorImpl.Middleware() {
-
-        @Nullable
-        @Override
-        public Bundle createActivityOptions(@NotNull Command command, @NotNull Intent activityIntent) {
-            return null;
-        }
-
-        @NotNull
-        @Override
-        public FragmentTransaction setupFragmentTransaction(@NotNull Command command, @Nullable Fragment currentFragment, @NotNull Fragment nextFragment, @NotNull FragmentTransaction fragmentTransaction) {
-            if (command instanceof Forward
-                    && currentFragment instanceof ProfileFragment
-                    && nextFragment instanceof SelectPhotoFragment) {
-                setupSharedElementForProfileToSelectPhoto(
-                        (ProfileFragment) currentFragment,
-                        (SelectPhotoFragment) nextFragment,
-                        fragmentTransaction
-                );
-            }
-            return fragmentTransaction;
-        }
-    };
-
-    private Navigator navigator = new AppNavigatorImpl(this, getSupportFragmentManager(), R.id.container, navigatorMiddleware);
-
-    private void setupSharedElementForProfileToSelectPhoto(ProfileFragment profileFragment,
-                                                           SelectPhotoFragment selectPhotoFragment,
-                                                           FragmentTransaction fragmentTransaction) {
-        ChangeBounds changeBounds = new ChangeBounds();
-        selectPhotoFragment.setSharedElementEnterTransition(changeBounds);
-        selectPhotoFragment.setSharedElementReturnTransition(changeBounds);
-        profileFragment.setSharedElementEnterTransition(changeBounds);
-        profileFragment.setSharedElementReturnTransition(changeBounds);
-
-        View view = profileFragment.getAvatarViewForAnimation();
-        fragmentTransaction.addSharedElement(view, PHOTO_TRANSITION);
-        selectPhotoFragment.setAnimationDestinationId((Integer) view.getTag());
-    }
+    private Navigator navigator = new AppNavigator(this, getSupportFragmentManager(), R.id.container);
 
     @Override
     public void onBackPressed() {
